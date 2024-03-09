@@ -14,3 +14,11 @@
 /target/
 .cargo/
 
+# Env
+.env
+
+# Log/Temp files
+log/
+tmp/
+.tmp
+.log

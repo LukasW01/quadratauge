@@ -1,0 +1,42 @@
+[workspace]
+members = [
+    "bot_core",
+    "bot_codegen",
+    "bot_commands",
+    "bot_yt_playlist",
+    "bot"
+]
+resolver = "2"
+
+[workspace.dependencies]
+env_logger = "0.11.0"
+log = "0.4.19"
+thiserror = "1.0.40"
+serde_json = "1.0.99"
+derive_builder = "0.20.0"
+
+[workspace.dependencies.serenity]
+version = "0.12.0"
+default-features = false
+features = ["client", "gateway", "rustls_backend", "model", "voice", "cache"]
+
+[workspace.dependencies.songbird]
+version = "0.4.0"
+features = ["builtin-queue"]
+
+[workspace.dependencies.tokio]
+version = "1.29.0"
+features = ["macros", "rt-multi-thread"]
+
+[workspace.dependencies.serde]
+version = "1.0.164"
+features = ["derive"]
+
+[workspace.dependencies.reqwest]
+version = "0.11.18"
+default-features = false
+features = ["rustls-tls", "json"]
+
+[workspace.dependencies.symphonia]
+version = "0.5"
+features = ["all-formats"]
