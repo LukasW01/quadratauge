@@ -1,6 +1,6 @@
 use bot_core::{
     response::{Response, ResponseBuilder},
-    utils, botCommand, Error,
+    utils, BotCommand, Error,
 };
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
 
@@ -10,7 +10,7 @@ use serenity::{async_trait, client::Context, model::application::CommandInteract
 pub struct Skip {}
 
 #[async_trait]
-impl botCommand for Skip {
+impl BotCommand for Skip {
     async fn execute<'a>(
         &self,
         ctx: &Context,

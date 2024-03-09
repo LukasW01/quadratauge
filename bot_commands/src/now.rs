@@ -1,7 +1,7 @@
 use bot_core::{
     response::{Response, ResponseBuilder},
     utils::{self, voice::TrackMetaKey},
-    botCommand, Error,
+    BotCommand, Error,
 };
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
 use songbird::tracks::LoopState;
@@ -11,7 +11,7 @@ use songbird::tracks::LoopState;
 pub struct Now {}
 
 #[async_trait]
-impl botCommand for Now {
+impl BotCommand for Now {
     async fn execute<'a>(
         &self,
         ctx: &Context,

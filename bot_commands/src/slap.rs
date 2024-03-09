@@ -1,6 +1,6 @@
 use bot_core::{
     response::{Response, ResponseBuilder},
-    botCommand, Error,
+    BotCommand, Error,
 };
 use serenity::{
     all::Mentionable, async_trait, client::Context, model::application::CommandInteraction,
@@ -17,7 +17,7 @@ use std::num::NonZeroU64;
 pub struct Slap {}
 
 #[async_trait]
-impl botCommand for Slap {
+impl BotCommand for Slap {
     async fn execute<'a>(
         &self,
         _ctx: &Context,

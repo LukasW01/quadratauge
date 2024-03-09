@@ -1,6 +1,6 @@
 use bot_core::{
     response::{Response, ResponseBuilder},
-    utils, botCommand, Error,
+    utils, BotCommand, Error,
 };
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
 
@@ -22,7 +22,7 @@ use serenity::{async_trait, client::Context, model::application::CommandInteract
 pub struct TrackLoop {}
 
 #[async_trait]
-impl botCommand for TrackLoop {
+impl BotCommand for TrackLoop {
     async fn execute<'a>(
         &self,
         ctx: &Context,

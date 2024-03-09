@@ -3,9 +3,9 @@ extern crate log;
 extern crate serenity;
 
 pub mod client;
-pub use client::bot;
+pub use client::Bot;
 mod command;
-pub use command::{botCommand, botCommandBaseline, botCommandOption};
+pub use command::{BotCommand, BotCommandBaseline, BotCommandOption};
 mod error;
 pub use error::Error;
 pub mod handler;

@@ -2,14 +2,12 @@
 name = "bot_codegen"
 version = "0.5.0"
 edition = "2021"
-description = "Library with codegen macros for the bot discord bot"
+description = "Library with codegen macros for the discord bot"
 license = "MIT"
-repository = "https://github.com/jontze/bot-rs"
+repository = "https://gitlab.com/LukasW01/quadratauge"
 
 [lib]
 proc_macro = true
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 proc-macro2 = "1.0.63"

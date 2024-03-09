@@ -1,6 +1,6 @@
 use bot_core::{
     response::{Response, ResponseBuilder},
-    botCommand, Error,
+    BotCommand, Error,
 };
 use serenity::{
     async_trait,
@@ -74,7 +74,7 @@ impl Urban {
 }
 
 #[async_trait]
-impl botCommand for Urban {
+impl BotCommand for Urban {
     async fn execute<'a>(
         &self,
         _ctx: &Context,

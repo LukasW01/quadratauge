@@ -1,7 +1,7 @@
 use super::dice::{RollDice, Throw};
 use bot_core::{
     response::{Response, ResponseBuilder},
-    botCommand, Error,
+    BotCommand, Error,
 };
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
 
@@ -17,7 +17,7 @@ pub struct Roll {}
 impl Roll {}
 
 #[async_trait]
-impl botCommand for Roll {
+impl BotCommand for Roll {
     async fn execute<'a>(
         &self,
         _ctx: &Context,

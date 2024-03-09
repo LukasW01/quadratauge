@@ -1,6 +1,6 @@
 use bot_core::{
     response::{Response, ResponseBuilder},
-    botCommand, Error,
+    BotCommand, Error,
 };
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
 
@@ -19,7 +19,7 @@ impl Inspire {
 }
 
 #[async_trait]
-impl botCommand for Inspire {
+impl BotCommand for Inspire {
     async fn execute<'a>(
         &self,
         _ctx: &Context,

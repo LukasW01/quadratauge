@@ -2,11 +2,9 @@
 name = "bot_commands"
 version = "0.5.0"
 edition = "2021"
-description = "Library with a collection of some commands for the bot discord bot"
+description = "Library with a collection of some commands for the discord bot"
 license = "MIT"
-repository = "https://github.com/jontze/bot-rs"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+repository = "https://gitlab.com/LukasW01/quadratauge"
 
 [dependencies]
 log = { workspace = true }
@@ -19,12 +17,9 @@ rand = "0.8.5"
 
 [dependencies.bot_core]
 path = "../bot_core"
-version = "0.5.0"
 
 [dependencies.bot_codegen]
 path = "../bot_codegen"
-version = "0.5.0"
 
 [dependencies.bot_yt_playlist]
 path = "../bot_yt_playlist"
-version = "0.5.0"

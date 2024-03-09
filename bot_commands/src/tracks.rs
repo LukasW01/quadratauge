@@ -1,7 +1,7 @@
 use bot_core::{
     response::{Response, ResponseBuilder},
     utils::{self, voice::TrackMetaKey},
-    botCommand, Error,
+    BotCommand, Error,
 };
 use serenity::{
     async_trait,
@@ -17,7 +17,7 @@ use songbird::tracks::LoopState;
 pub struct Tracks {}
 
 #[async_trait]
-impl botCommand for Tracks {
+impl BotCommand for Tracks {
     async fn execute<'a>(
         &self,
         ctx: &Context,

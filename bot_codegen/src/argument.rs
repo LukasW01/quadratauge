@@ -59,7 +59,7 @@ impl Argument {
         let kind_token = self.kind_token();
         let required = self.required;
         quote! {
-            __botCommandOption {
+            __BotCommandOption {
                 name: #name,
                 description: #description,
                 kind: __CommandOptionType::#kind_token,

@@ -1,6 +1,6 @@
 use bot_core::{
     response::{Response, ResponseBuilder},
-    botCommand, Error,
+    BotCommand, Error,
 };
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
 
@@ -9,7 +9,7 @@ use serenity::{async_trait, client::Context, model::application::CommandInteract
 pub struct Ping {}
 
 #[async_trait]
-impl botCommand for Ping {
+impl BotCommand for Ping {
     async fn execute<'a>(
         &self,
         _ctx: &Context,

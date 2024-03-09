@@ -19,7 +19,7 @@ use std::sync::Arc;
 macro_rules! setup_commands {
     ($($command_struct:expr),* $(,)*) => {
         {
-            let mut commands: Vec<std::sync::Arc<dyn bot_core::botCommand>> = Vec::new();
+            let mut commands: Vec<std::sync::Arc<dyn bot_core::BotCommand>> = Vec::new();
             $(
                 let command = std::sync::Arc::new($command_struct);
                 commands.push(command);
@@ -29,14 +29,14 @@ macro_rules! setup_commands {
     };
 }
 
-pub trait botCommandBaseline {
+pub trait BotCommandBaseline {
     fn name(&self) -> String;
     fn description(&self) -> String;
     fn deferred(&self) -> bool;
-    fn options(&self) -> Vec<botCommandOption>;
+    fn options(&self) -> Vec<BotCommandOption>;
 }
 
-pub struct botCommandOption {
+pub struct BotCommandOption {
     pub name: &'static str,
     pub description: &'static str,
     pub kind: CommandOptionType,
@@ -44,7 +44,7 @@ pub struct botCommandOption {
 }
 
 #[async_trait]
-pub trait botCommand: Sync + Send + botCommandBaseline {
+pub trait BotCommand: Sync + Send + BotCommandBaseline {
     /// Construct the slash command that will be submited to the discord api
     async fn register(&self, ctx: &Context) -> Result<Command, serenity::Error> {
         let command_options: Vec<CreateCommandOption> = self
@@ -71,7 +71,7 @@ pub trait botCommand: Sync + Send + botCommandBaseline {
 pub(crate) struct Commands;
 
 impl TypeMapKey for Commands {
-    type Value = Vec<Arc<dyn botCommand>>;
+    type Value = Vec<Arc<dyn BotCommand>>;
 }
 
 /// Submit global slash commands to the discord api.

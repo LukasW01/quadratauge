@@ -1,24 +1,24 @@
 use crate::{
     command::Commands, error::Error, handler::command::Handler, http::HttpClientKey,
-    intents::botIntents, botCommand,
+    intents::BotIntents, BotCommand,
 };
 use serenity::{client::Client, model::gateway::GatewayIntents};
 use songbird::SerenityInit;
 use std::sync::Arc;
 
 #[derive(derive_builder::Builder)]
-pub struct bot {
+pub struct Bot {
     token: String,
     #[builder(default)]
-    commands: Vec<Arc<dyn botCommand>>,
-    #[builder(default = "botIntents::default().into()")]
+    commands: Vec<Arc<dyn BotCommand>>,
+    #[builder(default = "BotIntents::default().into()")]
     intents: GatewayIntents,
 }
 
-impl bot {
+impl Bot {
     #[must_use]
-    pub fn builder() -> botBuilder {
-        botBuilder::default()
+    pub fn builder() -> BotBuilder {
+        BotBuilder::default()
     }
 
     /// This will actually start the configured bot bot
@@ -63,7 +63,7 @@ mod test {
             .token("some-token".to_string())
             .build()
             .unwrap();
-        assert_eq!(build.intents, botIntents::default().into());
+        assert_eq!(build.intents, BotIntents::default().into());
     }
 
     #[test]

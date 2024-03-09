@@ -1,7 +1,7 @@
 use bot_core::{
     handler::voice::InactiveHandler,
     response::{Response, ResponseBuilder},
-    utils, botCommand, Error,
+    utils, BotCommand, Error,
 };
 use reqwest::Url;
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
@@ -32,7 +32,7 @@ impl Play {
 }
 
 #[async_trait]
-impl botCommand for Play {
+impl BotCommand for Play {
     async fn execute<'a>(
         &self,
         ctx: &Context,

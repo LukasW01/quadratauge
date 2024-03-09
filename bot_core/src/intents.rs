@@ -1,10 +1,10 @@
 use serenity::model::gateway::GatewayIntents;
 
-pub(crate) struct botIntents {
+pub(crate) struct BotIntents {
     inner: GatewayIntents,
 }
 
-impl botIntents {
+impl BotIntents {
     pub fn default() -> Self {
         Self {
             inner: GatewayIntents::empty()
@@ -18,8 +18,8 @@ impl botIntents {
     }
 }
 
-impl From<botIntents> for GatewayIntents {
-    fn from(c_intents: botIntents) -> Self {
+impl From<BotIntents> for GatewayIntents {
+    fn from(c_intents: BotIntents) -> Self {
         c_intents.inner()
     }
 }
@@ -30,13 +30,13 @@ mod test {
 
     #[test]
     fn should_have_voice_intent() {
-        let c_intents: GatewayIntents = botIntents::default().into();
+        let c_intents: GatewayIntents = BotIntents::default().into();
         assert!(c_intents.guild_voice_states());
     }
 
     #[test]
     fn should_have_guild_intents() {
-        let c_intents: GatewayIntents = botIntents::default().into();
+        let c_intents: GatewayIntents = BotIntents::default().into();
         assert!(c_intents.guilds());
     }
 }

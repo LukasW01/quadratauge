@@ -2,11 +2,9 @@
 name = "bot_yt_playlist"
 version = "0.5.0"
 edition = "2021"
-description = "Library of the bot discord bot to interact with youtube playlists"
+description = "Library of the bot discord to interact with youtube playlists"
 license = "MIT"
-repository = "https://github.com/jontze/bot-rs"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+repository = "https://gitlab.com/LukasW01/quadratauge"
 
 [dependencies]
 serde_json = { workspace = true }

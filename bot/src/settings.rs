@@ -1,5 +1,5 @@
-const bot_PLAYLIST_SONG_LIMIT_ENV: &str = "bot_PLAYLIST_SONG_LIMIT";
-const bot_SONG_LENGTH_LIMIT_ENV: &str = "bot_SONG_LENGTH_LIMIT";
+const BOT_PLAYLIST_SONG_LIMIT_ENV: &str = "BOT_PLAYLIST_SONG_LIMIT";
+const BOT_SONG_LENGTH_LIMIT_ENV: &str = "BOT_SONG_LENGTH_LIMIT";
 
 pub struct PlaySettings {
     pub playlist_song_limit: i32,
@@ -8,7 +8,7 @@ pub struct PlaySettings {
 
 impl PlaySettings {
     pub fn parse() -> Self {
-        let playlist_song_limit: i32 = std::env::var(bot_PLAYLIST_SONG_LIMIT_ENV)
+        let playlist_song_limit: i32 = std::env::var(BOT_PLAYLIST_SONG_LIMIT_ENV)
             .ok()
             .map(|value| {
                 value
@@ -16,12 +16,12 @@ impl PlaySettings {
                     .expect("Unable to parse '{bot_PLAYLIST_SONG_LIMIT_ENV}' to an integer")
             })
             .unwrap_or(30);
-        let song_length_limit = std::env::var(bot_SONG_LENGTH_LIMIT_ENV)
+        let song_length_limit = std::env::var(BOT_SONG_LENGTH_LIMIT_ENV)
             .ok()
             .map(|value| {
                 value
                     .parse::<f32>()
-                    .expect("Unable to parse '{bot_SONG_LENGTH_LIMIT_ENV}' to a float")
+                    .expect("Unable to parse '{BOT_SONG_LENGTH_LIMIT_ENV}' to a float")
             })
             .unwrap_or(600.00);
         Self {
@@ -31,11 +31,11 @@ impl PlaySettings {
     }
 }
 
-pub struct botSettings {
+pub struct BotSettings {
     pub play: PlaySettings,
 }
 
-impl botSettings {
+impl BotSettings {
     pub fn parse() -> Self {
         let play = PlaySettings::parse();
         Self { play }

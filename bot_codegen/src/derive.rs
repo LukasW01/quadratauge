@@ -191,12 +191,12 @@ pub(crate) fn impl_command_baseline(derive_input: DeriveInput) -> TokenStream {
     let description = &command.description;
     let deferred = command.deferred;
 
-    // Implement the botCommandBaseline trait for the struct
+    // Implement the BotCommandBaseline trait for the struct
     quote! {
-        use bot_core::{botCommandBaseline as __botCommandBaseline, botCommandOption as __botCommandOption};
+        use bot_core::{BotCommandBaseline as __BotCommandBaseline, BotCommandOption as __BotCommandOption};
         use serenity::model::application::CommandOptionType as __CommandOptionType;
 
-        impl __botCommandBaseline for #struct_name {
+        impl __BotCommandBaseline for #struct_name {
             fn name(&self) -> String {
                 String::from(#command_name)
             }
@@ -209,7 +209,7 @@ pub(crate) fn impl_command_baseline(derive_input: DeriveInput) -> TokenStream {
                 #deferred
             }
 
-            fn options(&self) -> Vec<__botCommandOption> {
+            fn options(&self) -> Vec<__BotCommandOption> {
                 vec![#(#bot_command_option_tokens),*]
             }
         }

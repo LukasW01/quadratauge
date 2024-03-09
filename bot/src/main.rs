@@ -6,8 +6,8 @@ extern crate bot_core;
 use bot_commands::{
     Fib, Inspire, Now, Pause, Ping, Play, Resume, Roll, Skip, Slap, Stop, TrackLoop, Tracks, Urban,
 };
-use bot_core::bot;
-use settings::botSettings;
+use bot_core::Bot;
+use settings::BotSettings;
 
 mod settings;
 
@@ -16,7 +16,7 @@ async fn main() {
     let env = env_logger::Env::default().filter_or("RUST_LOG", "bot=info");
     env_logger::init_from_env(env);
 
-    let settings = botSettings::parse();
+    let settings = BotSettings::parse();
 
     let commands = setup_commands![
         Fib::default(),
@@ -37,7 +37,7 @@ async fn main() {
         TrackLoop::default(),
         Roll::default()
     ];
-    let bot = bot::builder()
+    let bot = Bot::builder()
         .token(std::env::var("DISCORD_TOKEN").expect("Discord token to be present"))
         .commands(commands)
         .build()

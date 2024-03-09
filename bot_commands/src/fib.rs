@@ -1,6 +1,6 @@
 use bot_core::{
     response::{Response, ResponseBuilder},
-    botCommand, Error,
+    BotCommand, Error,
 };
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
 
@@ -24,7 +24,7 @@ impl Fib {
 }
 
 #[async_trait]
-impl botCommand for Fib {
+impl BotCommand for Fib {
     async fn execute<'a>(
         &self,
         _ctx: &Context,
