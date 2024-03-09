@@ -4,7 +4,7 @@ extern crate log;
 extern crate bot_core;
 
 use bot_commands::{
-    Fib, Inspire, Now, Pause, Ping, Play, Resume, Roll, Skip, Slap, Stop, TrackLoop, Tracks, Urban,
+    Fib, Inspire, Now, Pause, Ping, Play, Resume, Roll, Skip, Slap, Stop, TrackLoop, Tracks, Urban, Reddit,
 };
 use bot_core::Bot;
 use settings::BotSettings;
@@ -35,7 +35,8 @@ async fn main() {
         Tracks::default(),
         Urban::default(),
         TrackLoop::default(),
-        Roll::default()
+        Roll::default(), 
+        Reddit::default(),
     ];
     let bot = Bot::builder()
         .token(std::env::var("DISCORD_TOKEN").expect("Discord token to be present"))
