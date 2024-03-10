@@ -26,11 +26,13 @@ include:
 test:junit-report:
     stage: test
     before_script:
-    - apt update
-    - apt install cmake python3-pip python3-yt-dlp -y
-    - mkdir -p $CARGO_HOME/bin && curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C $CARGO_HOME/bin
+      - apt update
+      - apt install cmake python3-pip -y
+      - apt install python3-yt-dlp -y
+      - apt install cmake python3-pip python3-yt-dlp -y
+      - mkdir -p $CARGO_HOME/bin && curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C $CARGO_HOME/bin
     script:
-    - cargo nextest run --profile ci   
+      - cargo nextest run --profile ci   
     artifacts:
       when: always
       reports:
@@ -41,7 +43,8 @@ lint:
     stage: test
     before_script: 
      - apt update
-     - apt install cmake python3-pip python3-yt-dlp -y     
+     - apt install cmake python3-pip -y
+     - apt install python3-yt-dlp -y
      - rustup component add rustfmt
      - rustup component add clippy
     script:
