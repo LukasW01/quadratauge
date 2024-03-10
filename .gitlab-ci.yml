@@ -28,7 +28,7 @@ test:junit-report:
     before_script:
       - apt update
       - apt install cmake python3-pip -y
-      - apt install python3-yt-dlp -y
+      - pip install yt-dlp
       - apt install cmake python3-pip python3-yt-dlp -y
       - mkdir -p $CARGO_HOME/bin && curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C $CARGO_HOME/bin
     script:
@@ -44,7 +44,7 @@ lint:
     before_script: 
      - apt update
      - apt install cmake python3-pip -y
-     - apt install python3-yt-dlp -y
+     - pip install yt-dlp
      - rustup component add rustfmt
      - rustup component add clippy
     script:
