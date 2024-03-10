@@ -36,4 +36,3 @@ impl YtDlp {
             .and_then(std::process::Child::wait_with_output)
     }
 }
-

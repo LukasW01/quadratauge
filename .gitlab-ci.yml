@@ -1,6 +1,7 @@
 image: "rust:latest"
 
 stages:
+- lint
 - test
 - docker
 
@@ -22,6 +23,17 @@ sast:
 include:
 - template: Security/SAST.gitlab-ci.yml
 
+lint:
+  stage: lint
+  before_script:
+    - apt update
+    - apt install cmake -y
+    - rustup component add rustfmt
+    - rustup component add clippy
+  script:
+    - cargo fmt --check
+    - cargo clippy --all-targets
+
 test:junit-report:
   stage: test
   before_script:
@@ -34,17 +46,6 @@ test:junit-report:
     when: always
     reports:
       junit: $CI_PROJECT_DIR/target/nextest/ci/junit.xml
-
-lint:
-  stage: test
-  before_script: 
-   - apt update
-   - apt install cmake -y
-   - rustup component add rustfmt
-   - rustup component add clippy
-  script:
-   - cargo fmt --check
-   - cargo clippy --all-targets
 
 docker_build:
   stage: docker
