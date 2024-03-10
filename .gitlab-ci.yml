@@ -6,9 +6,6 @@ default:
   before_script:
     - rustc --version 
     - cargo --version
-    - add-apt-repository ppa:tomtomtom/yt-dlp -y
-    - apt update
-    - apt install yt-dlp cmake -y
   interruptible: true
   cache:
     key: ${CI_COMMIT_REF_SLUG}
@@ -29,7 +26,9 @@ include:
 test:junit-report:
     stage: test
     before_script:
-
+    - add-apt-repository ppa:tomtomtom/yt-dlp -y
+    - apt update
+    - apt install yt-dlp cmake -y
     - mkdir -p $CARGO_HOME/bin && curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C $CARGO_HOME/bin
     script:
     - cargo nextest run --profile ci   
@@ -44,6 +43,9 @@ lint:
     before_script: 
      - rustup component add rustfmt
      - rustup component add clippy
+     - add-apt-repository ppa:tomtomtom/yt-dlp -y
+     - apt update
+     - apt install yt-dlp cmake -y
     script:
      - cargo fmt --check
      - cargo clippy --all-targets
