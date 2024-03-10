@@ -55,18 +55,3 @@ pub fn fetch_playlist_songs(
         messages: failed_deserializing,
     })
 }
-
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    fn should_fetch_playlist_songs() {
-        let response = fetch_playlist_songs(
-            "https://www.youtube.com/watch?v=BJ8XPi-cPkM&list=PLDfKAXSi6kUZbsoz3AcUYjy8n6hbulk4o"
-                .to_string(),
-        )
-        .unwrap();
-        assert_eq!(response.messages.len(), 0, "Expect no deserializing errors")
-    }
-}

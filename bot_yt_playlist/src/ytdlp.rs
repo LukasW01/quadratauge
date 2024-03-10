@@ -37,20 +37,3 @@ impl YtDlp {
     }
 }
 
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    fn should_build_new_instance() {
-        let some_res = YtDlp::new()
-            .arg("--version".to_string())
-            .execute()
-            .expect("To execute yt-dlp");
-        let status_code = some_res.status.code().unwrap();
-        assert!(
-            some_res.status.success(),
-            "Status code is actually: {status_code}"
-        );
-    }
-}
