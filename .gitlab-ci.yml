@@ -41,8 +41,7 @@ lint:
     stage: test
     before_script: 
      - apt update
-     - apt install cmake python3-full -y
-     - pip install yt-dlp
+     - apt install cmake -y
      - rustup component add rustfmt
      - rustup component add clippy
     script:
