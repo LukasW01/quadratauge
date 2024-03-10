@@ -26,6 +26,7 @@ include:
 test:junit-report:
     stage: test
     before_script:
+    - apt update
     - apt install cmake python3-pip -y
     - python3 -m pip install -U yt-dlp
     - mkdir -p $CARGO_HOME/bin && curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C $CARGO_HOME/bin
@@ -42,6 +43,7 @@ lint:
     before_script: 
      - rustup component add rustfmt
      - rustup component add clippy
+     - apt update
      - apt install cmake python3-pip -y
      - python3 -m pip install -U yt-dlp
     script:
