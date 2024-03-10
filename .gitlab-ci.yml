@@ -27,8 +27,7 @@ test:junit-report:
     stage: test
     before_script:
     - apt update
-    - apt install cmake python3-pip -y
-    - python3 -m pip install -U yt-dlp
+    - apt install cmake python3-pip python3-yt-dlp -y
     - mkdir -p $CARGO_HOME/bin && curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C $CARGO_HOME/bin
     script:
     - cargo nextest run --profile ci   
@@ -41,11 +40,10 @@ test:junit-report:
 lint:
     stage: test
     before_script: 
+     - apt update
+     - apt install cmake python3-pip python3-yt-dlp -y     
      - rustup component add rustfmt
      - rustup component add clippy
-     - apt update
-     - apt install cmake python3-pip -y
-     - python3 -m pip install -U yt-dlp
     script:
      - cargo fmt --check
      - cargo clippy --all-targets
