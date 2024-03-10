@@ -70,9 +70,7 @@ impl EventHandler for Handler {
                             error_res_builder.timing(ResponseTiming::Instant);
                         }
                         match command_error {
-                            Error::Command { message } => {
-                                error_res_builder.message(Some(message))
-                            }
+                            Error::Command { message } => error_res_builder.message(Some(message)),
                             Error::Join => error_res_builder.message(Some(
                                 "❌ **I could not join your voice channel**".to_string(),
                             )),

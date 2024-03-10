@@ -43,13 +43,13 @@ mod test {
 
     #[test]
     fn fail_to_build_without_token() {
-        let build = bot::builder().commands(vec![]).build();
+        let build = Bot::builder().commands(vec![]).build();
         assert!(build.is_err())
     }
 
     #[test]
     fn build_with_token() {
-        let build = bot::builder()
+        let build = Bot::builder()
             .commands(vec![])
             .token("some-token".to_string())
             .build();
@@ -58,7 +58,7 @@ mod test {
 
     #[test]
     fn build_with_default_intents() {
-        let build = bot::builder()
+        let build = Bot::builder()
             .commands(vec![])
             .token("some-token".to_string())
             .build()
@@ -68,7 +68,7 @@ mod test {
 
     #[test]
     fn build_with_empty_commands() {
-        let build = bot::builder()
+        let build = Bot::builder()
             .commands(vec![])
             .token("some-token".to_string())
             .build()

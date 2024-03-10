@@ -6,9 +6,17 @@ default:
   before_script:
     - rustc --version 
     - cargo --version
+  interruptible: true
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .cargo
+      - target
 
 variables: 
   REGISTRY: ghcr.io
+  CARGO_HOME: ${CI_PROJECT_DIR}/.cargo
+  RUSTFLAGS: -Dwarnings
 
 sast:
   stage: test
@@ -18,16 +26,17 @@ include:
 test:junit-report:
     stage: test
     before_script:
-    - cargo install junitify
+    - apt install yt-dlp
+    - mkdir -p $CARGO_HOME/bin && curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C $CARGO_HOME/bin
     script:
-    - cargo test -- --format=json -Z unstable-options --report-time | junitify --out $CI_PROJECT_DIR/tests/
+    - cargo nextest run --profile ci   
     artifacts:
       when: always
       reports:
-        junit: $CI_PROJECT_DIR/tests/*.xml
+        junit: $CI_PROJECT_DIR/target/nextest/ci/junit.xml
     image: "rust:latest"
 
-lint-code:
+lint:
     stage: test
     before_script: 
      - rustup component add rustfmt

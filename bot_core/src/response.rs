@@ -35,10 +35,10 @@ impl ResponseBuilder {
 }
 
 impl Response {
-    pub async fn submit<'a>(
+    pub async fn submit(
         self,
         ctx: &Context,
-        command: &'a mut CommandInteraction,
+        command: &mut CommandInteraction,
     ) -> Result<(), Error> {
         match self.timing {
             // Create a regular text response that might has embeds
@@ -57,7 +57,10 @@ impl Response {
             // Just indicate that the command is being processed
             ResponseTiming::DeferredInfo => {
                 command
-                    .create_response(&ctx.http, CreateInteractionResponse::Defer(CreateInteractionResponseMessage::new()),                    )
+                    .create_response(
+                        &ctx.http,
+                        CreateInteractionResponse::Defer(CreateInteractionResponseMessage::new()),
+                    )
                     .await
             }
             // Edit the deferred response with the actual response
