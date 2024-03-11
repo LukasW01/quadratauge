@@ -1,6 +1,7 @@
 image: "rust:latest"
 
 stages:
+- sast
 - cargo
 - docker
 
@@ -21,7 +22,7 @@ default:
       - target
 
 sast:
-  stage: test
+  stage: sast
 include:
 - template: Security/SAST.gitlab-ci.yml
 
