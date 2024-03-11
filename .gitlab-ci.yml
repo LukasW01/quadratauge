@@ -1,8 +1,7 @@
 image: "rust:latest"
 
 stages:
-- lint
-- test
+- cargo
 - docker
 
 variables:
@@ -27,7 +26,7 @@ include:
 - template: Security/SAST.gitlab-ci.yml
 
 lint:
-  stage: lint
+  stage: cargo
   before_script:
     - rustup component add rustfmt
     - rustup component add clippy
@@ -36,7 +35,7 @@ lint:
     - cargo clippy --all-targets
 
 test:junit-report:
-  stage: test
+  stage: cargo
   before_script:
     - mkdir -p $CARGO_HOME/bin && curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C $CARGO_HOME/bin
   script:
