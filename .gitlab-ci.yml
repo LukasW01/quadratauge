@@ -11,9 +11,6 @@ variables:
   RUSTFLAGS: -Dwarnings
 
 default:
-  before_script: 
-    - apt update
-    - apt install cmake -y
   interruptible: true
   cache:
     key: ${CI_COMMIT_REF_SLUG}
@@ -29,6 +26,8 @@ include:
 lint:
   stage: cargo
   before_script:
+    - apt update
+    - apt install cmake -y
     - rustup component add rustfmt
     - rustup component add clippy
   script:
@@ -38,6 +37,8 @@ lint:
 test:junit-report:
   stage: cargo
   before_script:
+    - apt update
+    - apt install cmake -y
     - mkdir -p $CARGO_HOME/bin && curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C $CARGO_HOME/bin
   script:
     - cargo nextest run --profile ci   
