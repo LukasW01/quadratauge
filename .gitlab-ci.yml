@@ -64,3 +64,4 @@ docker_build:
   image: docker:cli
   only:
     - tags
+
