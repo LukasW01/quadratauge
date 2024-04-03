@@ -30,6 +30,7 @@ struct RedditChild {
 pub struct RedditChildData {
     title: String,
     selftext: String,
+    permalink: String,
     subreddit_name_prefixed: String,
     url: String,
     created: f64,
@@ -51,8 +52,11 @@ impl Reddit {
         query: &str,
     ) -> Result<Vec<RedditChildData>, reqwest::Error> {
         debug!("Requesting reddit dictionary and deserialize json body");
-        let url = format!("https://www.reddit.com/r/{}/.json", query);
-        Ok(reqwest::get(url)
+        let url = format!("https://www.reddit.com/r/{}.json", query);
+        Ok(reqwest::Client::new()
+            .get(url)
+            .header("User-Agent", "Mozilla/5.0")
+            .send()
             .await?
             .json::<RedditResponse>()
             .await?
@@ -66,13 +70,13 @@ impl Reddit {
     fn create_embed(reddit_entries: Vec<RedditChildData>) -> Vec<CreateEmbed> {
         let mut embeds: Vec<CreateEmbed> = Vec::new();
         for (index, reddit) in reddit_entries.iter().enumerate() {
-            if index >= 3 {
+            if index >= 5 {
                 break;
             }
-            let embed_reddit_entry = CreateEmbed::default()
+            let mut embed_reddit_entry = CreateEmbed::default()
                 .color(Color::from_rgb(255, 0, 0))
                 .title(&reddit.title)
-                .url(&reddit.url)
+                .url(&format!("https://www.reddit.com{}", reddit.permalink))
                 .field("Subreddit", &reddit.subreddit_name_prefixed, true)
                 .field("Author", &reddit.author, true)
                 .field(
@@ -82,7 +86,12 @@ impl Reddit {
                         .to_string(),
                     true,
                 )
-                .field("Selftext", &reddit.selftext, false);
+                .field("Selftext", reddit.selftext.clone().chars().take(1024).collect::<String>(), false);
+            
+            if ["jpeg", "png", "jpg", "gif", "webp", "avif"].iter().any(|ext| reddit.url.contains(ext)) {
+                embed_reddit_entry = embed_reddit_entry.image(&reddit.url);
+            }
+
             embeds.push(embed_reddit_entry);
         }
         embeds
