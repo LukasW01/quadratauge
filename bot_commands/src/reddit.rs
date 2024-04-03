@@ -86,9 +86,21 @@ impl Reddit {
                         .to_string(),
                     true,
                 )
-                .field("Selftext", reddit.selftext.clone().chars().take(1024).collect::<String>(), false);
-            
-            if ["jpeg", "png", "jpg", "gif", "webp", "avif"].iter().any(|ext| reddit.url.contains(ext)) {
+                .field(
+                    "Selftext",
+                    reddit
+                        .selftext
+                        .clone()
+                        .chars()
+                        .take(1024)
+                        .collect::<String>(),
+                    false,
+                );
+
+            if ["jpeg", "png", "jpg", "gif", "webp", "avif"]
+                .iter()
+                .any(|ext| reddit.url.contains(ext))
+            {
                 embed_reddit_entry = embed_reddit_entry.image(&reddit.url);
             }
 

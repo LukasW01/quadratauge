@@ -55,10 +55,26 @@ impl Urban {
                 .url(&urban.permalink)
                 .field(
                     "Definition",
-                    &urban.definition.clone().chars().take(1024).collect::<String>().replace(['[', ']'], ""),
+                    &urban
+                        .definition
+                        .clone()
+                        .chars()
+                        .take(1024)
+                        .collect::<String>()
+                        .replace(['[', ']'], ""),
                     false,
                 )
-                .field("Example", &urban.example.clone().chars().take(1024).collect::<String>().replace(['[', ']'], ""), false)
+                .field(
+                    "Example",
+                    &urban
+                        .example
+                        .clone()
+                        .chars()
+                        .take(1024)
+                        .collect::<String>()
+                        .replace(['[', ']'], ""),
+                    false,
+                )
                 .field(
                     "Rating",
                     format!(
