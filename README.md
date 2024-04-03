@@ -40,7 +40,7 @@ version: '3.7'
 
 services:
   quadratauge:
-    image: ghcr.io/LukasW01/quadratauge:latest
+    image: ghcr.io/lukasw01/quadratauge:latest
     restart: unless-stopped
     container_name: quadratauge
     environment:
