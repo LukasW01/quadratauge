@@ -45,7 +45,6 @@ RUN apt-get update && apt-get install -y python3-minimal binutils && \
   rm -rf /usr/local/share/*
 
 FROM bitnami/minideb:bullseye as runtime
-LABEL org.opencontainers.image.source="https://github.com/jontze/bot-rs"
 WORKDIR /bot
 COPY --from=builder /bot/target/release/bot bot
 COPY --from=packages /packages /usr/bin
