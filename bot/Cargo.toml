@@ -1,6 +1,6 @@
 [package]
 name = "bot"
-version = "0.5.0"
+version = "0.5.2"
 edition = "2021"
 description = "An extensible discord bot with support with music commands"
 license = "MIT"
@@ -13,8 +13,8 @@ tokio = { workspace = true }
 
 [dependencies.bot_core]
 path = "../bot_core"
-version = "0.5.0"
+version = "0.5.2"
 
 [dependencies.bot_commands]
 path = "../bot_commands"
-version = "0.5.0"
+version = "0.5.2"
