@@ -15,7 +15,7 @@ reqwest = { workspace = true }
 serde = { workspace = true }
 rand = "0.8.5"
 chrono = "0.4.37"
-serde_json = "=1.0.115"
+serde_json = "=1.0.116"
 
 [dependencies.bot_core]
 path = "../bot_core"
