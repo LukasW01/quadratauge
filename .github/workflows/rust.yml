@@ -1,0 +1,45 @@
+name: Rust
+
+on:
+  workflow_call:
+
+jobs:
+  clippy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Cache for Rust
+        uses: Swatinem/rust-cache@v2
+        with:
+          prefix-key: "rust-${{ github.job }}"
+      - name: Run clippy
+        run: cargo clippy
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run fmt
+        run: cargo fmt --all --check
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Cache for Rust
+        uses: Swatinem/rust-cache@v2
+        with:
+          prefix-key: "rust-${{ github.job }}"
+      - name: Run tests
+        run: cargo test --all
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Cache for Rust
+        uses: Swatinem/rust-cache@v2
+        with:
+          prefix-key: "rust-${{ github.job }}"
+      - name: Test build
+        run: cargo build
