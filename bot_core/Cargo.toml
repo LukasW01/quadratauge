@@ -1,0 +1,17 @@
+[package]
+name = "bot_core"
+version = "0.5.3"
+edition = "2021"
+description = "Library with the core logic for the discord bot"
+license = "MIT"
+repository = "https://gitlab.com/LukasW01/quadratauge"
+
+[dependencies]
+log = { workspace = true }
+serenity = { workspace = true }
+songbird = { workspace = true }
+tokio = { workspace = true }
+reqwest = { workspace = true }
+thiserror = { workspace = true }
+derive_builder = { workspace = true }
+symphonia = { workspace = true }

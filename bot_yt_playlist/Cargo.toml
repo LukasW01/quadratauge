@@ -1,0 +1,13 @@
+[package]
+name = "bot_yt_playlist"
+version = "0.5.3"
+edition = "2021"
+description = "Library of the bot discord to interact with youtube playlists"
+license = "MIT"
+repository = "https://gitlab.com/LukasW01/quadratauge"
+
+[dependencies]
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+

@@ -1,0 +1,24 @@
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### Cargo ###
+/target/
+.cargo/
+
+# Env
+.env
+
+# Log/Temp files
+log/
+tmp/
+.tmp
+.log

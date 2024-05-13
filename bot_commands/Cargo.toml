@@ -1,0 +1,27 @@
+[package]
+name = "bot_commands"
+version = "0.5.3"
+edition = "2021"
+description = "Library with a collection of some commands for the discord bot"
+license = "MIT"
+repository = "https://gitlab.com/LukasW01/quadratauge"
+
+[dependencies]
+log = { workspace = true }
+serenity = { workspace = true }
+songbird = { workspace = true }
+tokio = { workspace = true }
+reqwest = { workspace = true }
+serde = { workspace = true }
+rand = "0.8.5"
+chrono = "0.4.37"
+serde_json = "=1.0.117"
+
+[dependencies.bot_core]
+path = "../bot_core"
+
+[dependencies.bot_codegen]
+path = "../bot_codegen"
+
+[dependencies.bot_yt_playlist]
+path = "../bot_yt_playlist"
