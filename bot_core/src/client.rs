@@ -1,6 +1,10 @@
 use crate::{
-    command::Commands, error::Error, handler::command::Handler, http::HttpClientKey,
-    intents::BotIntents, BotCommand,
+    command::{Commands, CommandsScope},
+    error::Error,
+    handler::command::Handler,
+    http::HttpClientKey,
+    intents::BotIntents,
+    BotCommand,
 };
 use serenity::{client::Client, model::gateway::GatewayIntents};
 use songbird::SerenityInit;
@@ -13,6 +17,9 @@ pub struct Bot {
     commands: Vec<Arc<dyn BotCommand>>,
     #[builder(default = "BotIntents::default().into()")]
     intents: GatewayIntents,
+    /// Used when registering commands with the Discord API
+    #[builder(default)]
+    commands_scope: CommandsScope,
 }
 
 impl Bot {
@@ -21,13 +28,14 @@ impl Bot {
         BotBuilder::default()
     }
 
-    /// This will actually start the configured bot bot
+    /// This will actually start the configured Bot bot
     pub async fn start(self) -> Result<(), Error> {
         let mut client = Client::builder(self.token, self.intents)
             .event_handler(Handler)
             .register_songbird()
             .type_map_insert::<Commands>(self.commands)
             .type_map_insert::<HttpClientKey>(reqwest::Client::new())
+            .type_map_insert::<CommandsScope>(self.commands_scope)
             .await
             .map_err(|err| Error::Start { source: err })?;
         client

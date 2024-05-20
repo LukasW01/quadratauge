@@ -41,6 +41,7 @@ mod test {
     #[test]
     fn impl_commandbaseline_trait_with_macro() {
         #[derive(bot_codegen::CommandBaseline)]
+        #[allow(dead_code)]
         struct Test {}
     }
 

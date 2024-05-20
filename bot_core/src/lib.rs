@@ -5,7 +5,7 @@ extern crate serenity;
 pub mod client;
 pub use client::Bot;
 mod command;
-pub use command::{BotCommand, BotCommandBaseline, BotCommandOption};
+pub use command::{BotCommand, BotCommandBaseline, BotCommandOption, CommandsScope};
 mod error;
 pub use error::Error;
 pub mod handler;

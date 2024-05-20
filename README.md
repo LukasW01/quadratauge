@@ -44,7 +44,7 @@ services:
     restart: unless-stopped
     container_name: quadratauge
     environment:
-      - DISCORD_TOKEN: "TOKEN" 
+      - DISCORD_TOKEN=TOKEN
     labels:
       - io.containers.autoupdate=registry
 ```
