@@ -29,7 +29,7 @@ version = "1.37.0"
 features = ["macros", "rt-multi-thread"]
 
 [workspace.dependencies.serde]
-version = "1.0.202"
+version = "1.0.203"
 features = ["derive"]
 
 [workspace.dependencies.reqwest]
