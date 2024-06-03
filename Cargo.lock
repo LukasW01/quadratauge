@@ -195,7 +195,7 @@ dependencies = [
 
 [[package]]
 name = "bot"
-version = "0.6.0"
+version = "0.6.1"
 dependencies = [
  "bot_commands",
  "bot_core",
@@ -206,7 +206,7 @@ dependencies = [
 
 [[package]]
 name = "bot_codegen"
-version = "0.6.0"
+version = "0.6.1"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -215,7 +215,7 @@ dependencies = [
 
 [[package]]
 name = "bot_commands"
-version = "0.6.0"
+version = "0.6.1"
 dependencies = [
  "bot_codegen",
  "bot_core",
@@ -233,7 +233,7 @@ dependencies = [
 
 [[package]]
 name = "bot_core"
-version = "0.6.0"
+version = "0.6.1"
 dependencies = [
  "derive_builder",
  "log",
@@ -247,7 +247,7 @@ dependencies = [
 
 [[package]]
 name = "bot_yt_playlist"
-version = "0.6.0"
+version = "0.6.1"
 dependencies = [
  "serde",
  "serde_json",
@@ -1294,9 +1294,9 @@ dependencies = [
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.84"
+version = "1.0.85"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ec96c6a92621310b51366f1e28d05ef11489516e93be030060e5fc12024a49d6"
+checksum = "22244ce15aa966053a896d1accb3a6e68469b97c7f33f284b99f0d576879fc23"
 dependencies = [
  "unicode-ident",
 ]
