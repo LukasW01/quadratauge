@@ -4,6 +4,7 @@ use bot_core::{
 };
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
 
+#[allow(clippy::duplicated_attributes)]
 #[derive(Default, CommandBaseline)]
 #[name = "loop"]
 #[description = "Loop the current track"]
