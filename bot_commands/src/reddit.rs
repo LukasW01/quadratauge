@@ -124,7 +124,7 @@ impl BotCommand for Reddit {
             .map_err(|err| {
                 error!("Failed to request reddit dictionary entries : {:?}", err);
                 Error::Command {
-                    message: ":x: *Failed to request reddit dictionary*".to_string(),
+                    message: format!(":x: *Failed to request Subreddit ({:?})*", err),
                 }
             })?;
         let response_builder = if results.is_empty() {
