@@ -81,7 +81,7 @@ impl Reddit {
                 .field("Author", &reddit.author, true)
                 .field(
                     "Created",
-                    &chrono::DateTime::from_timestamp(reddit.created as i64, 0)
+                    chrono::DateTime::from_timestamp(reddit.created as i64, 0)
                         .unwrap_or_default()
                         .to_string(),
                     true,
@@ -122,7 +122,7 @@ impl BotCommand for Reddit {
         let results = Self::request_reddit_dictionary_entries(&query)
             .await
             .map_err(|err| {
-                error!("Failed to request reddit dictionary entries : {:?}", err);
+                error!("Failed to request Subreddit entries : {:?}", err);
                 Error::Command {
                     message: ":x: *Failed to request Subreddit*".to_string(),
                 }
