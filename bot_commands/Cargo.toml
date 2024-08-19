@@ -1,6 +1,6 @@
 [package]
 name = "bot_commands"
-version = "0.6.5"
+version = "0.6.6"
 edition = "2021"
 description = "Library with a collection of some commands for the discord bot"
 license = "MIT"
