@@ -7,7 +7,7 @@ license = "MIT"
 repository = "https://gitlab.com/LukasW01/quadratauge"
 
 [lib]
-proc_macro = true
+proc-macro = true
 
 [dependencies]
 proc-macro2 = "1.0.86"

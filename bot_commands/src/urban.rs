@@ -10,15 +10,11 @@ use serenity::{
 };
 
 #[derive(Deserialize, Debug)]
-#[allow(dead_code)]
 struct UrbanEntry {
     pub definition: String,
     pub permalink: String,
     pub thumbs_up: i64,
-    pub author: String,
     pub word: String,
-    pub defid: i64,
-    pub written_on: String,
     pub example: String,
     pub thumbs_down: i64,
 }
