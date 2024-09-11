@@ -76,7 +76,7 @@ impl Reddit {
             let mut embed_reddit_entry = CreateEmbed::default()
                 .color(Color::from_rgb(255, 0, 0))
                 .title(&reddit.title)
-                .url(&format!("https://www.reddit.com{}", reddit.permalink))
+                .url(format!("https://www.reddit.com{}", reddit.permalink))
                 .field("Subreddit", &reddit.subreddit_name_prefixed, true)
                 .field("Author", &reddit.author, true)
                 .field(
