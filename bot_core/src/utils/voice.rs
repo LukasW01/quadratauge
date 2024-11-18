@@ -19,8 +19,8 @@ impl TypeMapKey for TrackMetaKey {
     type Value = AuxMetadata;
 }
 
-pub fn get_active_voice_channel_id(
-    guild: CacheRef<'_, GuildId, Guild>,
+pub fn get_active_voice_channel_id<E>(
+    guild: CacheRef<'_, GuildId, Guild, E>,
     user_id: model::id::UserId,
 ) -> Option<model::id::ChannelId> {
     guild
