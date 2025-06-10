@@ -14,11 +14,9 @@ mod settings;
 
 #[tokio::main]
 async fn main() {
-    let env = env_logger::Env::default().filter_or("RUST_LOG", "bot=info");
-    env_logger::init_from_env(env);
+    env_logger::init_from_env(env_logger::Env::default().filter_or("RUST_LOG", "bot=info"));
 
     let settings = BotSettings::parse();
-
     let commands = setup_commands![
         Fib::default(),
         Inspire::default(),
