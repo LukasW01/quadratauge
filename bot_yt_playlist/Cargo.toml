@@ -1,6 +1,6 @@
 [package]
 name = "bot_yt_playlist"
-version = "0.6.7"
+version = "0.6.10"
 edition = "2021"
 description = "Library of the bot discord to interact with youtube playlists"
 license = "MIT"
