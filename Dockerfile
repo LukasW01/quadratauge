@@ -30,9 +30,11 @@ RUN cargo build --release --bin bot
 FROM bitnami/minideb:bullseye as packages
 WORKDIR /packages
 COPY --from=builder /bot/.yt-dlprc .
-RUN YTDLP_VERSION=$(cat .yt-dlprc) && \
-  apt-get update && apt-get install -y curl && \
-  curl -L https://github.com/yt-dlp/yt-dlp/releases/download/$YTDLP_VERSION/yt-dlp_linux > yt-dlp && chmod +x yt-dlp
+RUN export YTDLP_VERSION=$(cat .yt-dlprc)
+RUN export DENO_VERSION=$(cat .denorc)
+RUN apt-get update && apt-get install -y curl unzip && \
+    curl -L https://github.com/yt-dlp/yt-dlp/releases/download/$YTDLP_VERSION/yt-dlp_linux > yt-dlp && chmod +x yt-dlp && \
+    curl -L https://github.com/denoland/deno/releases/download/$DENO_VERSION/deno-aarch64-apple-darwin.zip -o deno.zip
 
 FROM bitnami/minideb:bullseye as python-builder
 RUN apt-get update && apt-get install -y python3-minimal binutils && \
