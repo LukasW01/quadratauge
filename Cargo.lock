@@ -198,7 +198,7 @@ dependencies = [
 
 [[package]]
 name = "bot"
-version = "0.6.12"
+version = "0.6.13"
 dependencies = [
  "bot_commands",
  "bot_core",
@@ -209,7 +209,7 @@ dependencies = [
 
 [[package]]
 name = "bot_codegen"
-version = "0.6.12"
+version = "0.6.13"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -218,7 +218,7 @@ dependencies = [
 
 [[package]]
 name = "bot_commands"
-version = "0.6.12"
+version = "0.6.13"
 dependencies = [
  "bot_codegen",
  "bot_core",
@@ -236,7 +236,7 @@ dependencies = [
 
 [[package]]
 name = "bot_core"
-version = "0.6.12"
+version = "0.6.13"
 dependencies = [
  "derive_builder 0.20.2",
  "log",
@@ -250,7 +250,7 @@ dependencies = [
 
 [[package]]
 name = "bot_yt_playlist"
-version = "0.6.12"
+version = "0.6.13"
 dependencies = [
  "serde",
  "serde_json",
