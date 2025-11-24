@@ -26,16 +26,14 @@ ENV CARGO_NET_RETRY=100
 ENV CARGO_TERM_COLOR=always
 RUN cargo build --release --bin bot
 
-# Downloads yt-dlp
+# Downloads yt-dlp & deno
 FROM bitnami/minideb:bullseye as packages
 WORKDIR /packages
 COPY --from=builder /bot/.yt-dlprc .
-ARG TARGETARCH
-RUN export YTDLP_VERSION=$(cat .yt-dlprc)
-RUN export DENO_VERSION=$(cat .denorc)
-RUN apt-get update && apt-get install -y curl unzip && \
-    curl -L https://github.com/yt-dlp/yt-dlp/releases/download/$YTDLP_VERSION/yt-dlp_linux > yt-dlp && chmod +x yt-dlp && \
-    curl -L https://github.com/denoland/deno/releases/download/$DENO_VERSION/deno-${TARGETARCH}-unknown-linux-gnu.zip -o deno.zip
+COPY --from=builder /bot/.denorc .
+RUN apt-get update && apt-get install -y curl unzip
+RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/download/$(cat .yt-dlprc)/yt-dlp_linux > yt-dlp && chmod +x yt-dlp
+RUN curl -L https://github.com/denoland/deno/releases/download/$(cat .denorc)/deno-$(uname -m)-unknown-linux-gnu.zip -o deno.zip && unzip deno.zip && chmod +x deno
 
 FROM bitnami/minideb:bullseye as python-builder
 RUN apt-get update && apt-get install -y python3-minimal binutils && \
