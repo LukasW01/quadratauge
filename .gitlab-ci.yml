@@ -6,7 +6,11 @@ stages:
 - docker
 
 variables:
+  # Docker
+  DOCKER_API_VERSION: "1.44"
+  # Registry
   REGISTRY: ghcr.io
+  # Rust
   CARGO_HOME: ${CI_PROJECT_DIR}/.cargo
   RUSTFLAGS: -Dwarnings
 
@@ -45,8 +49,6 @@ test:junit-report:
 
 docker_build:
   stage: docker
-  services:
-    - docker:dind
   image: docker:cli
   before_script:
     - docker login $REGISTRY -u $REGISTRY_USER -p $REGISTRY_PASSWORD
