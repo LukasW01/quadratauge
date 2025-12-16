@@ -46,6 +46,10 @@ test:junit-report:
     - mkdir -p $CARGO_HOME/bin && curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C $CARGO_HOME/bin
   script:
     - cargo nextest run --profile ci   
+  artifacts:
+    when: always
+    reports:
+      junit: $CI_PROJECT_DIR/target/nextest/ci/junit.xml
 
 docker_build:
   stage: docker
