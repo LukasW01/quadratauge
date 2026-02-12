@@ -32,6 +32,7 @@ impl Throw {
         Self { dices, bonus }
     }
 
+    #[allow(clippy::result_large_err)]
     pub(crate) fn validate(&self) -> Result<(), Error> {
         for dice in &self.dices {
             if dice.sides <= 1 {
