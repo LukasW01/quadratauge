@@ -1,4 +1,4 @@
-FROM lukemathwalker/cargo-chef:latest-rust-1.86-slim-bullseye as build_base
+FROM lukemathwalker/cargo-chef:latest-rust-1.93-slim-bullseye as build_base
 
 FROM build_base as planner
 WORKDIR /bot
