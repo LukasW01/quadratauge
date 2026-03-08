@@ -57,13 +57,13 @@ docker_build:
   before_script:
     - docker login $REGISTRY -u $REGISTRY_USER -p $REGISTRY_PASSWORD
   script:
-    - docker build --pull -t "quadratauge" .
+    - docker build --pull -t "$CI_PROJECT_NAME" .
     # latest tag
-    - docker tag "quadratauge" "$REGISTRY/$PROJECT_NAMESPACE/quadratauge:latest"
-    - docker push "$REGISTRY/$PROJECT_NAMESPACE/quadratauge:latest"
+    - docker tag "$CI_PROJECT_NAME" "$REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:latest"
+    - docker push "$REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:latest"
     # version tag
-    - docker tag "quadratauge" "$REGISTRY/$PROJECT_NAMESPACE/quadratauge:$CI_COMMIT_TAG"
-    - docker push "$REGISTRY/$PROJECT_NAMESPACE/quadratauge:$CI_COMMIT_TAG"
+    - docker tag "$CI_PROJECT_NAME" "$REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_TAG"
+    - docker push "$REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_TAG"
   only:
     - tags
 
