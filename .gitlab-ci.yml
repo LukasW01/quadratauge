@@ -55,15 +55,14 @@ docker_build:
   stage: docker
   image: docker:cli
   before_script:
-    - docker login $REGISTRY -u $REGISTRY_USER -p $REGISTRY_PASSWORD
+    - docker login $REGISTRY -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD"
   script:
     - docker build --pull -t "$CI_PROJECT_NAME" .
     # latest tag
-    - docker tag "$CI_PROJECT_NAME" "$REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:latest"
-    - docker push "$REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:latest"
+    - docker tag "$CI_PROJECT_NAME" "$REGISTRY/$CI_PROJECT_NAMESPACE_SLUG/$CI_PROJECT_NAME:latest"
+    - docker push "$REGISTRY/$CI_PROJECT_NAMESPACE_SLUG/$CI_PROJECT_NAME:latest"
     # version tag
-    - docker tag "$CI_PROJECT_NAME" "$REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_TAG"
-    - docker push "$REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:$CI_COMMIT_TAG"
+    - docker tag "$CI_PROJECT_NAME" "$REGISTRY/$CI_PROJECT_NAMESPACE_SLUG/$CI_PROJECT_NAME:$CI_COMMIT_TAG"
+    - docker push "$REGISTRY/$CI_PROJECT_NAMESPACE_SLUG/$CI_PROJECT_NAME:$CI_COMMIT_TAG"
   only:
     - tags
-
