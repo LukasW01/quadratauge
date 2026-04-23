@@ -1,5 +1,5 @@
 use bot_core::Error;
-use rand::{RngExt};
+use rand::RngExt;
 
 pub(crate) trait RollDice {
     fn roll(&self) -> i64;
