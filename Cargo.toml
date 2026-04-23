@@ -21,7 +21,7 @@ default-features = false
 features = ["client", "gateway", "rustls_backend", "model", "voice", "cache"]
 
 [workspace.dependencies.songbird]
-version = "0.4.0"
+version = "0.6.0"
 features = ["builtin-queue"]
 
 [workspace.dependencies.tokio]
@@ -33,10 +33,28 @@ version = "1.0.204"
 features = ["derive"]
 
 [workspace.dependencies.reqwest]
-version = "0.11.27"
+version = "0.12.28"
 default-features = false
 features = ["rustls-tls", "json"]
 
 [workspace.dependencies.symphonia]
 version = "0.5"
 features = ["all-formats"]
+
+[workspace.dependencies.proc-macro2]
+version = "1.0.86"
+
+[workspace.dependencies.quote]
+version = "1.0.36"
+
+[workspace.dependencies.syn]
+version = "2.0.69"
+
+[workspace.dependencies.rand]
+version = "0.10.1"
+
+[workspace.dependencies.chrono]
+version = "0.4.37"
+
+[workspace.dependencies.nonmax]
+version = "0.5.5"

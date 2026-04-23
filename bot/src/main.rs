@@ -14,7 +14,7 @@ mod settings;
 
 #[tokio::main]
 async fn main() {
-    env_logger::init_from_env(env_logger::Env::default().filter_or("RUST_LOG", "bot=info"));
+    env_logger::init_from_env(env_logger::Env::default().filter_or("LOG_LEVEL", "bot=info"));
 
     let settings = BotSettings::parse();
     let commands = setup_commands![

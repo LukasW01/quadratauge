@@ -13,9 +13,9 @@ songbird = { workspace = true }
 tokio = { workspace = true }
 reqwest = { workspace = true }
 serde = { workspace = true }
-rand = "0.10.1" 
-chrono = "0.4.37"
-serde_json = "=1.0.149"
+rand = { workspace = true }
+chrono = { workspace = true }
+nonmax = { workspace = true }
 
 [dependencies.bot_core]
 path = "../bot_core"

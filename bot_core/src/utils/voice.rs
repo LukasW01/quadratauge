@@ -1,3 +1,4 @@
+use std::sync::Arc;
 use crate::{error::Error, http::get_http_client, utils};
 use serenity::{
     all::{Guild, GuildId},
@@ -7,17 +8,11 @@ use serenity::{
     model::application::CommandInteraction,
 };
 use songbird::{
-    input::{AuxMetadata, Input, YoutubeDl},
+    input::{Input, YoutubeDl},
     tracks::TrackHandle,
-    typemap::TypeMapKey,
+    tracks::Track,
     Songbird,
 };
-
-pub struct TrackMetaKey;
-
-impl TypeMapKey for TrackMetaKey {
-    type Value = AuxMetadata;
-}
 
 pub fn get_active_voice_channel_id<E>(
     guild: CacheRef<'_, GuildId, Guild, E>,
@@ -99,14 +94,9 @@ pub async fn add_song(
     let mut input: Input = source.into();
     let metadata = input.aux_metadata().await?;
 
-    let track_handle = handler.enqueue_input(input).await;
-    // Store the metadata for later use
-    track_handle
-        .typemap()
-        .write()
-        .await
-        .insert::<TrackMetaKey>(metadata.clone());
-
+    let track = Track::new_with_data(input, Arc::new(metadata.clone()));
+    let track_handle = handler.enqueue(track).await;
+    
     Ok((metadata, track_handle))
 }
 

@@ -1,9 +1,10 @@
 use bot_core::{
     response::{Response, ResponseBuilder},
-    utils::{self, voice::TrackMetaKey},
+    utils::{self},
     BotCommand, Error,
 };
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
+use songbird::input::AuxMetadata;
 use songbird::tracks::LoopState;
 
 #[derive(CommandBaseline, Default)]
@@ -36,10 +37,8 @@ impl BotCommand for Now {
         // Create message from track metadata. This is scoped to drop the read lock on the
         // trackmeta as soon as possible.
         let message = {
-            let track_map = track.typemap().read().await;
-            let metadata = track_map
-                .get::<TrackMetaKey>()
-                .expect("Metadata to be present in track map");
+            let metadata = track
+                .data::<AuxMetadata>();
 
             metadata.title.as_ref().map_or(
                 String::from(":x: **Could not add audio source to the queue!**"),
@@ -50,8 +49,8 @@ impl BotCommand for Now {
                             track_info.push_str("\n:repeat: `Infinite`");
                         }
                         LoopState::Finite(loop_amount) => {
-                            if loop_amount > 0 {
-                                track_info.push_str(&format!("\n:repeat: `{}`", loop_amount));
+                            if loop_amount.get() > 0 {
+                                track_info.push_str(&format!("\n:repeat: `{}`", loop_amount.get()));
                             }
                         }
                     }

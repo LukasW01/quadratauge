@@ -1,6 +1,6 @@
 use bot_core::{
     response::{Response, ResponseBuilder},
-    utils::{self, voice::TrackMetaKey},
+    utils::{self},
     BotCommand, Error,
 };
 use serenity::{
@@ -9,6 +9,7 @@ use serenity::{
     client::Context,
     model::{application::CommandInteraction, Color},
 };
+use songbird::input::AuxMetadata;
 use songbird::tracks::LoopState;
 
 #[derive(CommandBaseline, Default)]
@@ -45,10 +46,7 @@ impl BotCommand for Tracks {
                 // the track meta as soon as possible.
                 let (title, url, loop_state) = {
                     // Extract track Metadata from tracks TyeMap
-                    let track_map = track.typemap().read().await;
-                    let metadata = track_map
-                        .get::<TrackMetaKey>()
-                        .expect("Metadata to be present in track map");
+                    let metadata = track.data::<AuxMetadata>();
                     let title = metadata
                         .title
                         .as_ref()
@@ -68,8 +66,8 @@ impl BotCommand for Tracks {
                         embed_value.push_str("\n:repeat: `Infinite`");
                     }
                     LoopState::Finite(loop_amount) => {
-                        if loop_amount > 0 {
-                            embed_value.push_str(&format!("\n:repeat: `{}`", loop_amount));
+                        if loop_amount.get() > 0 {
+                            embed_value.push_str(&format!("\n:repeat: `{}`", loop_amount.get()));
                         }
                     }
                 }

@@ -10,4 +10,3 @@ repository = "https://gitlab.com/LukasW01/quadratauge"
 serde_json = { workspace = true }
 thiserror = { workspace = true }
 serde = { workspace = true }
-
