@@ -49,7 +49,7 @@ impl Argument {
         }
     }
 
-    pub fn is_optional(&mut self) {
+    pub fn optional(&mut self) {
         self.required = false;
     }
 

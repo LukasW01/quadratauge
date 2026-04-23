@@ -17,7 +17,7 @@ impl Command {
         }
     }
 
-    pub fn is_deferred(&mut self) {
+    pub fn deferred(&mut self) {
         self.deferred = true;
     }
 

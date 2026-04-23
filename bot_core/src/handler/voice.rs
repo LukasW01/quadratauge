@@ -9,7 +9,7 @@ pub struct InactiveHandler {
 #[async_trait]
 impl songbird::EventHandler for InactiveHandler {
     async fn act(&self, ctx: &EventContext<'_>) -> Option<Event> {
-        if let songbird::EventContext::Track(track_list) = ctx
+        if let EventContext::Track(track_list) = ctx
             && track_list.is_empty()
         {
             debug!("Tracklist empty, leave channel!");

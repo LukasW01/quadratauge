@@ -1,4 +1,4 @@
-use crate::{error::Error, http::get_http_client, utils};
+use crate::{error::Error, http::get_http_client};
 use serenity::{
     all::{Guild, GuildId},
     cache::CacheRef,
@@ -29,9 +29,9 @@ pub async fn join(
     command: &CommandInteraction,
 ) -> Result<
     (
-        std::sync::Arc<Songbird>,
-        std::sync::Arc<serenity::prelude::Mutex<songbird::Call>>,
-        serenity::model::id::GuildId,
+        Arc<Songbird>,
+        Arc<serenity::prelude::Mutex<songbird::Call>>,
+        GuildId,
     ),
     Error,
 > {
@@ -42,9 +42,7 @@ pub async fn join(
     let channel_id = ctx
         .cache
         .guild(guild_id)
-        .and_then(|guild_cache_ref| {
-            utils::voice::get_active_voice_channel_id(guild_cache_ref, command.user.id)
-        })
+        .and_then(|guild_cache_ref| get_active_voice_channel_id(guild_cache_ref, command.user.id))
         .ok_or(Error::Join)?;
     debug!("Try to join guild with id: {:?}", guild_id);
     // Skip channel join if already connected
@@ -76,7 +74,7 @@ pub async fn join(
 
 pub async fn add_song(
     context: &Context,
-    call: std::sync::Arc<serenity::prelude::Mutex<songbird::Call>>,
+    call: Arc<serenity::prelude::Mutex<songbird::Call>>,
     payload: String,
     is_url: bool,
 ) -> Result<(songbird::input::AuxMetadata, TrackHandle), songbird::input::AuxMetadataError> {
@@ -100,7 +98,7 @@ pub async fn add_song(
     Ok((metadata, track_handle))
 }
 
-pub async fn get_songbird(ctx: &Context) -> std::sync::Arc<songbird::Songbird> {
+pub async fn get_songbird(ctx: &Context) -> Arc<Songbird> {
     songbird::get(ctx)
         .await
         .expect("Failed to get songbird manager")

@@ -39,7 +39,7 @@ fn parse_command_args(command: &mut Command, derive_attr: MetaNameValue) -> Resu
             if let Expr::Lit(deferred_lit) = derive_attr.value {
                 if let Lit::Bool(deferred_lit) = deferred_lit.lit {
                     if deferred_lit.value {
-                        command.is_deferred();
+                        command.deferred();
                     }
                 } else {
                     return Err(syn::Error::new(
@@ -66,9 +66,7 @@ fn parse_arguments(
         let mut kind: Option<String> = None;
         let mut required = true;
 
-        let nested = attr
-            .parse_args_with(Punctuated::<Meta, Token![,]>::parse_terminated)
-            .unwrap();
+        let nested = attr.parse_args_with(Punctuated::<Meta, Token![,]>::parse_terminated)?;
 
         for meta in nested {
             match meta {
@@ -149,7 +147,7 @@ fn parse_arguments(
         if let (Some(name), Some(description), Some(kind)) = (name, description, kind) {
             let mut argument = Argument::new(name, description, kind);
             if !required {
-                argument.is_optional();
+                argument.optional();
             }
             command.add_argument(argument);
         } else {
