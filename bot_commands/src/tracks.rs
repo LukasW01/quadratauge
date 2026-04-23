@@ -9,8 +9,7 @@ use serenity::{
     client::Context,
     model::{application::CommandInteraction, Color},
 };
-use songbird::input::AuxMetadata;
-use songbird::tracks::LoopState;
+use songbird::{input::AuxMetadata, tracks::LoopState};
 
 #[derive(CommandBaseline, Default)]
 #[description = "List all tracks in the queue"]
