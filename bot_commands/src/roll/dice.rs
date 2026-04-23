@@ -58,6 +58,7 @@ impl RollDice for Throw {
 impl std::str::FromStr for Throw {
     type Err = Error;
 
+    #[allow(clippy::result_large_err)]
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         const UNSUPPORTED_PATTERN_ERROR: &str =
             "Unsupported pattern. Only the following patterns are supported: e.g. `d6`, `2d6`, 2d6+1` or `2d6-1`";
