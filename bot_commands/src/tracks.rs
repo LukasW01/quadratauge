@@ -1,13 +1,13 @@
 use bot_core::{
+    BotCommand, Error,
     response::{Response, ResponseBuilder},
     utils::{self},
-    BotCommand, Error,
 };
 use serenity::{
     async_trait,
     builder::CreateEmbed,
     client::Context,
-    model::{application::CommandInteraction, Color},
+    model::{Color, application::CommandInteraction},
 };
 use songbird::{input::AuxMetadata, tracks::LoopState};
 

@@ -1,6 +1,6 @@
 use crate::{
-    command::{Commands, CommandsScope},
     BotCommand,
+    command::{Commands, CommandsScope},
 };
 use serenity::client::Context;
 use std::sync::Arc;

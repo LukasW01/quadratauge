@@ -7,10 +7,10 @@ use serenity::{
     model::application::CommandInteraction,
 };
 use songbird::{
+    Songbird,
     input::{Input, YoutubeDl},
     tracks::Track,
     tracks::TrackHandle,
-    Songbird,
 };
 use std::sync::Arc;
 

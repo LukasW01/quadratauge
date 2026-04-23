@@ -1,7 +1,8 @@
 use crate::{
+    Error,
     command::{command_not_implemented, setup_commands},
     response::{ResponseBuilder, ResponseTiming},
-    utils, Error,
+    utils,
 };
 use serenity::{
     all::OnlineStatus,

@@ -1,7 +1,7 @@
 use super::dice::{RollDice, Throw};
 use bot_core::{
-    response::{Response, ResponseBuilder},
     BotCommand, Error,
+    response::{Response, ResponseBuilder},
 };
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
 

@@ -1,7 +1,7 @@
 use proc_macro::TokenStream;
 use syn::{
-    punctuated::Punctuated, spanned::Spanned, Attribute, DeriveInput, Expr, Lit, Meta, MetaList,
-    MetaNameValue, Token,
+    Attribute, DeriveInput, Expr, Lit, Meta, MetaList, MetaNameValue, Token,
+    punctuated::Punctuated, spanned::Spanned,
 };
 
 use crate::{argument::Argument, command::Command};

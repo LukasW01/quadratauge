@@ -1,12 +1,12 @@
 use bot_core::{
-    response::{Response, ResponseBuilder},
     BotCommand, Error,
+    response::{Response, ResponseBuilder},
 };
 use serenity::{
     async_trait,
     builder::CreateEmbed,
     client::Context,
-    model::{application::CommandInteraction, Color},
+    model::{Color, application::CommandInteraction},
 };
 
 #[derive(Deserialize, Debug)]

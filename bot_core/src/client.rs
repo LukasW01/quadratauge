@@ -1,10 +1,10 @@
 use crate::{
+    BotCommand,
     command::{Commands, CommandsScope},
     error::Error,
     handler::command::Handler,
     http::HttpClientKey,
     intents::BotIntents,
-    BotCommand,
 };
 use serenity::{client::Client, model::gateway::GatewayIntents};
 use songbird::SerenityInit;

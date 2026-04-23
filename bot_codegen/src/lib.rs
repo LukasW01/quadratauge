@@ -2,7 +2,7 @@
 extern crate quote;
 
 use proc_macro::TokenStream;
-use syn::{parse_macro_input, DeriveInput};
+use syn::{DeriveInput, parse_macro_input};
 
 mod argument;
 mod command;

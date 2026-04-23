@@ -1,6 +1,6 @@
 use bot_core::{
-    response::{Response, ResponseBuilder},
     BotCommand, Error,
+    response::{Response, ResponseBuilder},
 };
 use serenity::{
     all::Mentionable, async_trait, client::Context, model::application::CommandInteraction,

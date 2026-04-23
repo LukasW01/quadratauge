@@ -1,6 +1,7 @@
 use bot_core::{
+    BotCommand, Error,
     response::{Response, ResponseBuilder},
-    utils, BotCommand, Error,
+    utils,
 };
 use nonmax::NonMaxU32;
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
@@ -49,18 +50,18 @@ impl BotCommand for TrackLoop {
         let stop_argument = self.arg_stop(command);
 
         // Cancel looping if the stop argument is true
-        if let Some(stop) = stop_argument {
-            if stop {
-                track.disable_loop().map_err(|err| {
-                    error!("Could not disable loop: {}", err);
-                    Error::Command {
-                        message: ":x: **Could not disable loop**".to_string(),
-                    }
-                })?;
-                return Ok(response_builder
-                    .message(Some(":repeat: **Looping disabled**".to_string()))
-                    .build()?);
-            }
+        if let Some(stop) = stop_argument
+            && stop
+        {
+            track.disable_loop().map_err(|err| {
+                error!("Could not disable loop: {}", err);
+                Error::Command {
+                    message: ":x: **Could not disable loop**".to_string(),
+                }
+            })?;
+            return Ok(response_builder
+                .message(Some(":repeat: **Looping disabled**".to_string()))
+                .build()?);
         }
 
         // Enable the loop infinite or for a specific amount of times

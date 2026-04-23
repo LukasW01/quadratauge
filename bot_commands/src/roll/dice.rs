@@ -60,8 +60,7 @@ impl std::str::FromStr for Throw {
 
     #[allow(clippy::result_large_err)]
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        const UNSUPPORTED_PATTERN_ERROR: &str =
-            "Unsupported pattern. Only the following patterns are supported: e.g. `d6`, `2d6`, 2d6+1` or `2d6-1`";
+        const UNSUPPORTED_PATTERN_ERROR: &str = "Unsupported pattern. Only the following patterns are supported: e.g. `d6`, `2d6`, 2d6+1` or `2d6-1`";
 
         let has_multiple_dices = !s.starts_with('d')
             && s.contains('d')
