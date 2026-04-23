@@ -1,6 +1,6 @@
 [package]
 name = "bot"
-version = "0.6.16"
+version = "0.6.17"
 edition = "2024"
 description = "An extensible discord bot with support with music commands"
 license = "MIT"
