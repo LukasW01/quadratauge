@@ -37,8 +37,7 @@ impl BotCommand for Now {
         // Create message from track metadata. This is scoped to drop the read lock on the
         // trackmeta as soon as possible.
         let message = {
-            let metadata = track
-                .data::<AuxMetadata>();
+            let metadata = track.data::<AuxMetadata>();
 
             metadata.title.as_ref().map_or(
                 String::from(":x: **Could not add audio source to the queue!**"),

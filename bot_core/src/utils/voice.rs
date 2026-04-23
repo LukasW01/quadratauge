@@ -1,4 +1,3 @@
-use std::sync::Arc;
 use crate::{error::Error, http::get_http_client, utils};
 use serenity::{
     all::{Guild, GuildId},
@@ -9,10 +8,11 @@ use serenity::{
 };
 use songbird::{
     input::{Input, YoutubeDl},
-    tracks::TrackHandle,
     tracks::Track,
+    tracks::TrackHandle,
     Songbird,
 };
+use std::sync::Arc;
 
 pub fn get_active_voice_channel_id<E>(
     guild: CacheRef<'_, GuildId, Guild, E>,
@@ -96,7 +96,7 @@ pub async fn add_song(
 
     let track = Track::new_with_data(input, Arc::new(metadata.clone()));
     let track_handle = handler.enqueue(track).await;
-    
+
     Ok((metadata, track_handle))
 }
 

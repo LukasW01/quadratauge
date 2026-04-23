@@ -1,8 +1,8 @@
-use nonmax::NonMaxU32;
 use bot_core::{
     response::{Response, ResponseBuilder},
     utils, BotCommand, Error,
 };
+use nonmax::NonMaxU32;
 use serenity::{async_trait, client::Context, model::application::CommandInteraction};
 
 #[allow(clippy::duplicated_attributes)]
@@ -65,12 +65,14 @@ impl BotCommand for TrackLoop {
 
         // Enable the loop infinite or for a specific amount of times
         let response_message = if let Some(amount) = loop_amount {
-            track.loop_for(NonMaxU32::new(amount as u32).unwrap()).map_err(|err| {
-                error!("Could not loop track '{amount}' times: {}", err);
-                Error::Command {
-                    message: ":x: **Could not loop track**".to_string(),
-                }
-            })?;
+            track
+                .loop_for(NonMaxU32::new(amount as u32).unwrap())
+                .map_err(|err| {
+                    error!("Could not loop track '{amount}' times: {}", err);
+                    Error::Command {
+                        message: ":x: **Could not loop track**".to_string(),
+                    }
+                })?;
             response_builder.message(Some(format!(":repeat: **Looping track `{amount}` times**")))
         } else {
             track.enable_loop().map_err(|err| {
