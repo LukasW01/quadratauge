@@ -36,8 +36,6 @@ cargo run
 You can also run the bot using Docker. 
 
 ```yaml
-version: '3.7'
-
 services:
   quadratauge:
     image: ghcr.io/lukasw01/quadratauge:latest
@@ -45,8 +43,6 @@ services:
     container_name: quadratauge
     environment:
       - DISCORD_TOKEN=TOKEN
-    labels:
-      - io.containers.autoupdate=registry
 ```
 
 ## Configuration
