@@ -1,6 +1,6 @@
 [package]
 name = "bot_codegen"
-version = "0.6.16"
+version = "0.6.17"
 edition = "2024"
 description = "Library with codegen macros for the discord bot"
 license = "MIT"
