@@ -49,10 +49,10 @@ services:
 
 The following environment variables can be set to configure the bot:
 
-| Variable Name                 | Default Value  | Description                                               | Required |
-| ----------------------------- | -------------- | --------------------------------------------------------- | -------- |
-| `DISCORD_TOKEN`               |                | Discord bot token                                         | `true`   |
-| `RUST_LOG`                    | `bot=info`     | Log Level                                                 | `false`  |
+| Variable Name   | Default Value | Description       | Required |
+|-----------------|---------------|-------------------|----------|
+| `DISCORD_TOKEN` |               | Discord bot token | `true`   |
+| `LOG_LEVEL`     | `bot=info`    | Log Level         | `false`  |
 
 You can create a bot and get the token from the [Discord Developer Portal](https://discord.com/developers/applications).
 
