@@ -54,7 +54,7 @@ version = "2.0.69"
 version = "0.10.1"
 
 [workspace.dependencies.chrono]
-version = "0.4.37"
+version = "0.4.45"
 
 [workspace.dependencies.nonmax]
 version = "0.5.5"
