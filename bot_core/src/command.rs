@@ -102,6 +102,7 @@ impl TypeMapKey for CommandsScope {
 /// Submit slash commands to the discord api.
 /// As global commands are cached for 1 hour, the activation can take some time.
 /// For local testing it is recommended to create commands with a guild scope.
+#[allow(clippy::result_large_err)]
 pub(crate) async fn setup_commands(ctx: &Context) -> Result<(), serenity::Error> {
     let commands = utils::get_commands(ctx).await;
     let commands_scope = utils::get_commands_scope(ctx).await;
@@ -113,6 +114,7 @@ pub(crate) async fn setup_commands(ctx: &Context) -> Result<(), serenity::Error>
     Ok(())
 }
 
+#[allow(clippy::result_large_err)]
 pub(crate) async fn command_not_implemented(
     ctx: &Context,
     command: &CommandInteraction,

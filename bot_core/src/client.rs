@@ -29,6 +29,7 @@ impl Bot {
     }
 
     /// This will actually start the configured Bot bot
+    #[allow(clippy::result_large_err)]
     pub async fn start(self) -> Result<(), Error> {
         let mut client = Client::builder(self.token, self.intents)
             .event_handler(Handler)

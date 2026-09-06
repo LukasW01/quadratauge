@@ -24,6 +24,7 @@ pub fn get_active_voice_channel_id<E>(
         .and_then(|voice_state| voice_state.channel_id)
 }
 
+#[allow(clippy::result_large_err)]
 pub async fn join(
     ctx: &Context,
     command: &CommandInteraction,

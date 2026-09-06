@@ -35,6 +35,7 @@ impl ResponseBuilder {
 }
 
 impl Response {
+    #[allow(clippy::result_large_err)]
     pub async fn submit(
         self,
         ctx: &Context,
