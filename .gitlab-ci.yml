@@ -1,4 +1,4 @@
-image: "rust:1.97"
+image: "rust:1.98"
 
 stages:
 - sast
